@@ -83,10 +83,14 @@ int main()
     StackType s;
     init_stack(&s);
     here = entry;
+    element road[MAX_STACK_SIZE] = {};
+    int i =0;
     while(maze[here.r][here.c] != 'x')
     {
         r = here.r;
         c = here.c;
+        road[i].r= r;
+        road[i++].c = c; //I don't need to add extra i++; if i do this
         maze[r][c] = '.';
         maze_print(maze);
         push_loc(&s,r-1,c);
@@ -100,6 +104,7 @@ int main()
         else here = pop(&s);
     }
     printf("got it!\n");
-
+    for(int k =0; k < i; k++)
+        printf("%d , %d \n", road[k].r,road[k].c);
     return 0;
 }
